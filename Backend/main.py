@@ -45,7 +45,9 @@ def incoming_weather_params(
         "messages":[{"role":"user","content":f"city:{city} question:{question}"}]
     })
 
-    return result
+    return {
+        "answer": result["messages"][-1].content
+    }
 
 
 #  https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHER_API_KEY}
