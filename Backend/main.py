@@ -29,7 +29,7 @@ def get_temp_details(city:str):
     this is to get city details 
     """
     # print(type(city))
-    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENopenweather_api_key}")
+    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}")
 
     data=res.json()
     return data
