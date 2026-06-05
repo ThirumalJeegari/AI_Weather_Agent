@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-S_URL = "http://127.0.0.1:8000"
+S_URL = st.secrets["backend_url"]
 
 st.title("AI Weather Agent")
 
@@ -10,5 +10,13 @@ question = st.text_input("Ask Your Weather Question")
 submit_button = st.button("Ask Agent")
 
 if submit_button:
-    res=requests.post(f"{S_URL}/get_weather",params={"city":city,"question":question})
-    st.write(res.json()["messages"][-1]["content"])
+    if city == "" or question == "":
+        st.error("Please enter city and question")
+    else:
+        res = requests.post(
+            f"{S_URL}/get_weather",
+            params={"city": city, "question": question}
+        )
+
+        data = res.json()
+        st.write(data["answer"])

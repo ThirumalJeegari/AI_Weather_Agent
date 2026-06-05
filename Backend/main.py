@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 app =FastAPI()
 
-OPENWEATHER_API_KEY=os.getenv("OPENWEATHER_API_KEY")
+openweather_api_key =os.getenv("weather_api_key")
 
 llm=ChatGroq(
     model="llama-3.3-70b-versatile",
@@ -23,7 +23,7 @@ def get_temp_details(city:str):
     this is to get city details 
     """
     # print(type(city))
-    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHER_API_KEY}")
+    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}")
 
     data=res.json()
     return data
