@@ -17,6 +17,13 @@ llm=ChatGroq(
 )
 
 
+@app.post("/")
+def home():
+    return {
+        "message":"AI Weather Backend Running Successfully"
+    }
+
+
 @tool 
 def get_temp_details(city:str):
     """
