@@ -19,4 +19,4 @@ if submit_button:
         )
 
         data = res.json()
-        st.write(data["messages"][-1]["content"])
+        st.write(data["answer"])

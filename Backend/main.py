@@ -16,6 +16,12 @@ llm=ChatGroq(
     api_key=os.getenv("api_key")
 )
 
+@app.get("/")
+def home():
+    return {
+        "message": "AI Weather Agent Backend Running Successfully"
+    }
+
 
 @tool 
 def get_temp_details(city:str):
@@ -23,10 +29,11 @@ def get_temp_details(city:str):
     this is to get city details 
     """
     # print(type(city))
-    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}")
+    res=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENopenweather_api_key}")
 
     data=res.json()
     return data
+
 
 
 agent=create_agent(
@@ -50,4 +57,3 @@ def incoming_weather_params(
     }
 
 
-#  https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHER_API_KEY}
